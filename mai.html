@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fukashigi no Carte - Character Ranking</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        background-color: #1e1e2f;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.7s cubic-bezier(0.4, 2, 0.6, 1),
+          background-color 0.5s;
+        min-height: 100vh;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(30, 30, 47, 0.7);
+        z-index: 0;
+        pointer-events: none;
+        transition: background 0.5s;
+      }
+      header {
+        text-align: center;
+        padding: 2rem 1rem 1rem 1rem;
+        background: rgba(40, 40, 60, 0.5);
+        border-radius: 0 0 32px 32px;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(6px);
+        position: relative;
+        z-index: 1;
+      }
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin: 0;
+        background: linear-gradient(90deg, #ff5e99 30%, #7f7fd5 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .platform-choice {
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+      .platform-choice label {
+        font-size: 1.1rem;
+        margin-right: 0.5rem;
+      }
+      #platform {
+        padding: 0.5rem 1.2rem;
+        border-radius: 8px;
+        border: none;
+        background: #232346;
+        color: #fff;
+        font-size: 1rem;
+        font-family: inherit;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+        outline: none;
+        transition: background 0.3s;
+      }
+      #platform:focus {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      #platform option {
+        background: #232346;
+        color: #fff;
+      }
+      .characters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem 2vw 2rem 2vw;
+        position: relative;
+        z-index: 1;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.13);
+        border-radius: 20px;
+        padding: 1.2rem 1rem 1.5rem 1rem;
+        width: 220px;
+        text-align: center;
+        backdrop-filter: blur(12px);
+        cursor: pointer;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+        animation: fadeIn 0.7s cubic-bezier(0.4, 2, 0.6, 1);
+      }
+      .card:hover {
+        transform: scale(1.06) translateY(-4px);
+        box-shadow: 0 12px 40px 0 rgba(255, 94, 153, 0.18);
+      }
+      .card img {
+        border-radius: 14px;
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        margin-bottom: 0.7rem;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      }
+      .rank {
+        margin: 0.5rem 0 0.2rem 0;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #ff5e99;
+        letter-spacing: 1px;
+      }
+      .card h3 {
+        margin: 0.2rem 0 0.5rem 0;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .play-btn {
+        margin-top: 0.5rem;
+        background: linear-gradient(90deg, #ff5e99 40%, #7f7fd5 100%);
+        border: none;
+        padding: 0.55rem 1.2rem;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-family: inherit;
+        font-weight: 600;
+        box-shadow: 0 2px 8px 0 rgba(255, 94, 153, 0.1);
+        transition: background 0.2s, transform 0.15s;
+        outline: none;
+      }
+      .play-btn:hover,
+      .play-btn:focus {
+        background: linear-gradient(90deg, #ff80ac 40%, #a7a7ff 100%);
+        transform: scale(1.05);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (max-width: 600px) {
+        .characters {
+          gap: 1rem;
+        }
+        .card {
+          width: 95vw;
+          max-width: 320px;
+        }
+        header {
+          padding: 1.2rem 0.5rem 0.7rem 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Fukashigi no Carte: Character Song Ranking</h1>
+    </header>
+
+    <div class="platform-choice">
+      <label for="platform">Choose your default music platform:</label>
+      <select id="platform">
+        <option value="spotify">Spotify</option>
+        <option value="youtube">YouTube Music</option>
+      </select>
+      <a
+        href="https://github.com/Piyushgarg06"
+        target="_blank"
+        class="github-link"
+        title="My GitHub"
+      >
+        <svg
+          height="26"
+          width="26"
+          viewBox="0 0 16 16"
+          fill="#fff"
+          style="vertical-align: middle; margin-left: 10px"
+        >
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+          0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+          -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+          -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64
+          -.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08
+          2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+          1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <div class="characters" id="characterContainer"></div>
+
+    <script>
+      const characters = [
+        {
+          name: "Mai Sakurajima",
+          rank: "The Irreplaceable Star",
+          description:
+            "Mai takes the top spot for her charisma, elegance, and depth of emotion. She shines in every scene, like a true star.",
+          image: "images/mai.png",
+          spotify:
+            "https://open.spotify.com/track/6YK3SFRYD8LTWhBHCexpUA?si=b290930de3bd4948",
+          youtube:
+            "https://music.youtube.com/watch?v=PmyrhyKTxPg&si=-yZqwmss_LOAl_8b",
+        },
+        {
+          name: "Rio Futaba",
+          rank: "The Wise Scientist",
+          description:
+            "Rio earns second place for her intelligence, calm demeanor, and surprising vulnerability beneath her rational facade.",
+          image: "images/rio.png",
+          spotify:
+            "https://open.spotify.com/track/7iRKGcKwrf2n4GmI8fEsvi?si=c62779b0a0674ed7",
+          youtube:
+            "https://music.youtube.com/watch?v=pSEi6svjQGk&si=U7-tBm1qtAiS2bmg",
+        },
+        {
+          name: "Koga Tomoe",
+          rank: "The Spirited Optimist",
+          description:
+            "Tomoe claims third for her bubbly energy, strong will, and touching character growth despite her youthful insecurities.",
+          image: "images/tomoe.png",
+          spotify:
+            "https://open.spotify.com/track/0kb9mxu5hXHteO9nuheYtN?si=111e2febe03f46cc",
+          youtube:
+            "https://music.youtube.com/watch?v=V5lXQZfSXu4&si=bJ-Hik3v8xL1AIra",
+        },
+        {
+          name: "Nodoka Toyohama",
+          rank: "The Determined Dreamer",
+          description:
+            "Nodoka comes fourth, recognized for her persistence, sibling complexities, and her desire to step out of her sister’s shadow.",
+          image: "images/nodoka.png",
+          spotify:
+            "https://open.spotify.com/track/3IOWZy7sJgA6hjQDxzD2Ta?si=4e0f9aa2c9e84459",
+          youtube:
+            "https://music.youtube.com/watch?v=-bq1dkQdjsk&si=jNSWUNfM1wdc9kE8",
+        },
+        {
+          name: "Kaede Azusagawa",
+          rank: "The Gentle Heart",
+          description:
+            "Kaede rounds out the list, beloved for her sweetness, courage in overcoming trauma, and adorable affection toward her brother.",
+          image: "images/kaede.png",
+          spotify:
+            "https://open.spotify.com/track/1Qs819EwnmkVkf2rj9aRsN?si=874acfd0cb3e4670",
+          youtube:
+            "https://music.youtube.com/watch?v=1BKWBsTEuhE&si=3SuGLtHuH9aEJ46j",
+        },
+      ];
+
+      const platformSelect = document.getElementById("platform");
+      const characterContainer = document.getElementById("characterContainer");
+
+      // Persist platform selection using localStorage
+      if (localStorage.getItem("platformPref")) {
+        platformSelect.value = localStorage.getItem("platformPref");
+      }
+      platformSelect.addEventListener("change", () => {
+        localStorage.setItem("platformPref", platformSelect.value);
+      });
+
+      characters.forEach((char, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${char.image}" alt="${char.name}">
+          <div class="rank">${char.rank}</div>
+          <h3>${char.name}</h3>
+          <p style="font-size:0.97rem;color:#e0e0f7;margin:0.5rem 0 0.7rem 0;min-height:48px;">${char.description}</p>
+          <button class="play-btn" type="button" data-index="${index}">Play Song</button>
+        `;
+        // Add hover event to change background image
+        card.addEventListener("mouseenter", () => {
+          document.body.style.backgroundImage = `url('${char.image}')`;
+        });
+        card.addEventListener("mouseleave", () => {
+          document.body.style.backgroundImage = ""; // Remove image or set to default if you want
+        });
+        characterContainer.appendChild(card);
+      });
+
+      document.querySelectorAll(".play-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const idx = e.target.getAttribute("data-index");
+          const char = characters[idx];
+          const selectedPlatform = platformSelect.value;
+
+          const songURL =
+            selectedPlatform === "spotify" ? char.spotify : char.youtube;
+          window.open(songURL, "_blank");
+
+          document.body.style.backgroundImage = `url('${char.image}')`;
+        });
+      });
+    </script>
+    <footer
+      style="
+        text-align: center;
+        padding: 1.2rem 0 1.2rem 0;
+        color: #e0e0f7;
+        font-size: 1.05rem;
+        letter-spacing: 1px;
+        opacity: 0.85;
+        z-index: 2;
+        position: relative;
+      "
+    >
+      Made By Piyush Garg
+    </footer>
+  </body>
+</html>
