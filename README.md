@@ -34,7 +34,7 @@ I built this site as a fun way to practice my **HTML, CSS, and JavaScript** skil
 
 ## 🔗 Demo
 
-> [🔗 https://bunny-girl-senpai-song-rating.vercel.app/](#) *(Insert your deployed website link here)*
+> [🔗 https://bunny-girl-senpai-song-rating.vercel.app/]
 
 ---
 
